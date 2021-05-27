@@ -1,0 +1,16 @@
+@import '../../../styles.scss';
+
+table {
+    width: 100%;
+}
+
+.mat-table  {
+    // 
+    background: mat-color($Area51-primary, 100);
+}
+
+.scroll-table-container {
+    max-height: 200px;
+    margin: auto;
+    width: 50%;
+}

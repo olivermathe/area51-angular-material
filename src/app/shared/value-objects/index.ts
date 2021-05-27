@@ -1,0 +1,1 @@
+export { Age } from "./age.value-object"

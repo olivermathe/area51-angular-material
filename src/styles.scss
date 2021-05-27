@@ -1,1 +1,54 @@
+@import '~@angular/material/theming';
+
+// Importando paleta de cores definida pelo UX/UI
+@import './palette.color.scss';
+
+@include mat-core();
+
+// Definindo variaveis globais com suas respectivas cores
+$Area51-primary: mat-palette($app-primary);
+$Area51-accent: mat-palette($app-accent);
+$Area51-secondary: mat-palette($app-secondary);
+$Area51-warn: mat-palette($app-accent);
+
+// Criando um tema custmizado para o projeto
+$Area51-theme: mat-light-theme((
+  color: (
+    primary: $Area51-primary,
+    accent: $Area51-accent,
+    warn: $Area51-warn,
+    secondary: $Area51-secondary
+  )
+));
+
+// Aplicando novo tema
+@include angular-material-theme($Area51-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.scroll-table-container {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.scroll-table-container::-webkit-scrollbar {
+  width: 10px;
+  margin-right: 10px;
+}
+
+.scroll-table-container::-webkit-scrollbar-track {
+  background: mat-color($Area51-primary, 100);
+  border-radius: 12px;
+}
+
+.scroll-table-container::-webkit-scrollbar-thumb {
+  background: mat-color($Area51-primary, default);
+  border-radius: 12px;
+}
+
+.scroll-table-container::-webkit-scrollbar-thumb:hover {
+  background: mat-color($Area51-secondary, default);
+  border-radius: 12px;
+}
