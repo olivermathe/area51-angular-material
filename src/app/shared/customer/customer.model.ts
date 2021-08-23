@@ -6,7 +6,8 @@ export class Customer implements IModel {
     constructor(
         public id: number,
         public name: string,
-        public age: Age
+        public age: Age,
+        public status: boolean = true
     ) {}
 
 }

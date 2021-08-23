@@ -34,7 +34,7 @@ export class CustomerMock implements IHttpMock {
     }
 
     put<T>(url: string, body: any): Observable<any> {
-        throw new Error("Method not implemented.");
+        return of({});
     }
     
     delete<T>(url: string, options: { headers: HttpHeaders; body: number[] }): Observable<any> {
@@ -42,7 +42,7 @@ export class CustomerMock implements IHttpMock {
         this.data = this.data.filter(d => options.body.indexOf(d.customerID) === -1);
         return of({});
     }
-    
+
 }
 
 function getRandomInt(min: number, max: number) {

@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { Datasource } from "@app/core/resources";
 import { IElement } from '@app/core/resources/IElement';
+import { Column, COLUMN_TYPE } from "./column";
+import { of } from "rxjs";
 
 @Component({
     selector: 'app-table',
@@ -10,9 +13,11 @@ import { IElement } from '@app/core/resources/IElement';
 export class TableComponent implements OnInit {
 
   @Input() datasource!: Datasource;
-  @Input() displayedColumns: string[] = [];
   @Input() allElementsSelected: boolean = false;
   @Input() selectable: boolean = false;
+  @Input() columns: Column[] = [];
+
+  displayedColumns: string[] = [];
 
   constructor() {}
 
@@ -20,6 +25,7 @@ export class TableComponent implements OnInit {
     if (this.selectable) {
       this.displayedColumns.unshift('selected');
     }
+    this.displayedColumns = this.columns.map(col => col.name);
   }
 
   nextPage() {
@@ -32,6 +38,37 @@ export class TableComponent implements OnInit {
 
   onSelectElement(element: IElement) {
     this.datasource.select(element);
+  }
+
+  isText(column: Column): boolean {
+    return column.type === COLUMN_TYPE.TEXT
+  }
+
+  isToggle(column: Column): boolean {
+      return column.type === COLUMN_TYPE.TOGGLE;
+  }
+
+  onChange(column: Column, element: any) {
+    console.log(column, element);
+    const field = column.name
+    const description = column.toggleOptions?.description;
+
+    this.showDialog(
+        `${element[field] ? 'Ativar' : 'Desativar'} ${description}`,
+        `Deseja realmente ${element[field] ? 'ativar' : 'desativar'} ${description}?`,
+    ).subscribe((confirm: boolean) => {
+      debugger
+        if (confirm) {
+            this.datasource.service.update(element.id, { [field]: element[field] })
+        } else {
+            element[field] = !element[field];
+        }
+    });
+  }
+
+  showDialog(title: string, message: string) {
+    console.log(title, message);
+    return of(true);
   }
 
 }
