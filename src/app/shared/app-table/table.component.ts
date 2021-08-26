@@ -15,6 +15,7 @@ export class TableComponent implements OnInit {
   @Input() datasource!: Datasource;
   @Input() allElementsSelected: boolean = false;
   @Input() selectable: boolean = false;
+  @Input() deletable: boolean = false;
   @Input() columns: Column[] = [];
 
   displayedColumns: string[] = [];
@@ -22,10 +23,17 @@ export class TableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.displayedColumns = this.columns.map(col => col.name);
+    this.setControlColumns();
+  }
+
+  setControlColumns() {
     if (this.selectable) {
       this.displayedColumns.unshift('selected');
     }
-    this.displayedColumns = this.columns.map(col => col.name);
+    if (this.deletable) {
+      this.displayedColumns.push('delete');
+    }
   }
 
   nextPage() {

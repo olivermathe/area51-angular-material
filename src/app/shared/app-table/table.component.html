@@ -33,6 +33,18 @@
       </ng-container>
 
     </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th id="deleteAction" mat-header-cell *matHeaderCellDef> Excluir </th>
+      <td id="row-deleteAction" mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          class="delete-button"
+          color="warn">
+            <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
     
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

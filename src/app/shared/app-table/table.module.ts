@@ -6,6 +6,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatTableModule } from "@angular/material/table";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatIconModule } from "@angular/material/icon";
 import { CustomerModule } from "@app/customer";
 import { InfiniteScrollDirective } from "./infinite-scroll.directive";
 import { TableComponent } from "./table.component";
@@ -23,6 +24,7 @@ import { TableComponent } from "./table.component";
         MatCheckboxModule,
         FormsModule,
         MatButtonModule,
+        MatIconModule,
         MatSlideToggleModule
     ],
     exports: [TableComponent]

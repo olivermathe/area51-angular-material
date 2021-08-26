@@ -9,7 +9,7 @@
 $Area51-primary: mat-palette($app-primary);
 $Area51-accent: mat-palette($app-accent);
 $Area51-secondary: mat-palette($app-secondary);
-$Area51-warn: mat-palette($app-accent);
+$Area51-warn: mat-palette($app-warning);
 
 // Criando um tema custmizado para o projeto
 $Area51-theme: mat-light-theme((
